@@ -7,7 +7,6 @@
 body, html, #allmap {
  width: 100%;
  height: 100%;
- overflow: hidden;
  margin: 0;
 }
 
@@ -20,6 +19,7 @@ body, html, #allmap {
  width: 100%;
  font-size: 14px;
  line-height: 20px;
+ overflow: scroll;
 }
 </style>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=AexcbLfIm28AKHckwn0AdMBIj8gtG5x0"></script>
@@ -39,12 +39,19 @@ body, html, #allmap {
     map.enableScrollWheelZoom(true); //enable the scroll wheel
 
     var options = {
+        pageCapacity : 90,
         onSearchComplete : function(results) {
             //check the status
             if (local.getStatus() == BMAP_STATUS_SUCCESS) {
                 var s = [];
                 for (var i = 0; i < results.getCurrentNumPois(); i++) {
-                    s.push(results.getPoi(i).title + ", "  + results.getPoi(i).address);
+                    s.push(results.getPoi(i).title + ", "
+                            + results.getPoi(i).address + ", "
+                            + results.getPoi(i).phoneNumber + ", "
+                            + results.getPoi(i).point.lat + " "
+                            + results.getPoi(i).point.lng + ", "
+                            + results.getPoi(i).postcode + ", "
+                            + results.getPoi(i).detailUrl);
                 }
                 document.getElementById("r-result").innerHTML = s.join("<br/>");
             }
