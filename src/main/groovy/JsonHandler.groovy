@@ -28,7 +28,7 @@ def builder = new groovy.json.JsonBuilder()
 */
 
 def sluper = new JsonSlurper()
-def data = sluper.parse(new FileReader('/home/ejiaqsu/comments_log_json'))
+def data = sluper.parse(new FileReader('../resources/comments_log_json'))
 
 
 def commentMap = [test40: false, build: false, ut: false, coverity: false, test50: false];
